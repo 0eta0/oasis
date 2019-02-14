@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Map : MonoBehaviour {
-
+    [SerializeField]
+    private GameObject[] enemies;
+    
     private Camera _mainCamera;
 
     private Vector3 getScreenTopLeft()
@@ -42,7 +44,7 @@ public class Map : MonoBehaviour {
         GameObject obj2 = (GameObject)Resources.Load("Wall_TB");
         GameObject obj3 = (GameObject)Resources.Load("Wall_S");
         GameObject obj4 = (GameObject)Resources.Load("Block");
-        GameObject obj5 = (GameObject)Resources.Load("Player");
+        //GameObject obj5 = (GameObject)Resources.Load("Player");
 
         //プレハブをもとにインスタンス生成
         Instantiate(obj2, new Vector3(0.0f, getScreenTopLeft().y, 0.0f), Quaternion.identity);
@@ -71,7 +73,7 @@ public class Map : MonoBehaviour {
                 }
                 else
                 {
-                    Instantiate(obj5, new Vector3(position_x, position_y, 0.0f), Quaternion.identity);
+                    Instantiate(enemies[Random.Range(0, enemies.Length)], new Vector3(position_x, position_y, 0.0f), Quaternion.identity);
                     flag = 1;
                 }
             }

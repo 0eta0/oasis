@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class green_enemy : MonoBehaviour {
+public class green_enemy : EnemyBase {
 
 	// 敵オブジェクトのRigidbody2Dを入れる変数
 	private Rigidbody2D rb2d;
@@ -31,7 +31,7 @@ public class green_enemy : MonoBehaviour {
 	void EnemyMove () {
 		// ENEMYのx座標
 		float rb2d_velocity_y = rb2d.velocity.y;
-		if (System.Math.Abs(rb2d_velocity_y) > 4) {
+		if (System.Math.Abs(rb2d_velocity_y) > 2) {
 			Sign = Sign * -1;
 		}
 		// 移動を計算させるための２次元のベクトルを作る

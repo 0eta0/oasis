@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     private float accelerate = 0.1f;
     [SerializeField]
     private float angleDrag = 0.1f;
-    
+
     [SerializeField]
     private string friendTag;
     [SerializeField]
@@ -24,6 +24,13 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rigid;
     private Vector2 moveDirection;
     private GameObject tail;
+    public GameObject GetTail()
+    {
+        return tail;
+    }
+
+    private List<GameObject> friends = new List<GameObject>();
+
     private bool isBlinking;
 
 	// Use this for initialization
@@ -47,16 +54,16 @@ public class PlayerController : MonoBehaviour {
         Move();
     }
 
+     //移動は自動
     private void Move()
     {
-        //移動は自動
         moveDirection = direction.position - transform.position;
         rigid.velocity = moveDirection * speed;
     }
 
+    //入力で回転
     private void Rotate()
     {
-        //入力で回転
         float input = Input.GetAxisRaw("Horizontal");
         if (input > 0)
             transform.Rotate(0, 0, -angle);
@@ -66,31 +73,21 @@ public class PlayerController : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(/*!isBlinking && */collision.gameObject.tag == "Enemy")
         {
-            Transform collideObject = collision.transform;
-            collideObject.parent = transform;
-            collideObject.gameObject.tag = friendTag;
-            collideObject.position = SetChildPosition();
+            Join(collision.gameObject);
+        }
 
-            collideObject.gameObject.GetComponent<HingeJoint2D>().connectedBody =
-                transform.GetChild(transform.childCount - 1).GetComponent<Rigidbody2D>();
-
-            collideObject.gameObject.GetComponent<DistanceJoint2D>().connectedBody = 
-                tail.GetComponent<Rigidbody2D>();
-
-            collideObject.parent = null;
-            tail = collideObject.gameObject;
-            speed += accelerate;
-            angle -= angleDrag;
-            
+        if(collision.gameObject.tag == "BlockObject")
+        {
+            Divide();
+            StartCoroutine("Blink");
         }
     }
 
+    //新しく列に加えたNPCの位置を列の後ろに設定する
     private Vector3 SetChildPosition()
     {
-        //新しく列に加えたNPCの位置を列の後ろに設定する
-
         Vector3 arrayDirection = Vector3.Normalize(tail.transform.position - direction.position);
         float arrayAngle = Mathf.Atan2(arrayDirection.y, arrayDirection.x);
 
@@ -101,19 +98,78 @@ public class PlayerController : MonoBehaviour {
         return childPosition;
     }
 
-    private IEnumerable Blink()
+    private void Join(GameObject collision)
     {
-        float blinkTime = 1f;
-        Renderer renderer = playerSprite.GetComponent<Renderer>();
+        Transform collideObject = collision.transform;
+
+        collideObject.parent = transform;
+        collideObject.gameObject.tag = friendTag;
+        collideObject.position = SetChildPosition();
+        collideObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
+
+        collideObject.GetComponent<Rigidbody2D>().drag = 10;
+
+        HingeJoint2D joint = collideObject.gameObject.AddComponent<HingeJoint2D>();
+        joint.connectedBody = transform.GetChild(transform.childCount - 1).GetComponent<Rigidbody2D>();
+
+        DistanceJoint2D disJoint = collideObject.gameObject.AddComponent<DistanceJoint2D>();
+        disJoint.connectedBody = tail.GetComponent<Rigidbody2D>();
+
+        Destroy(collideObject.GetComponent<EnemyBase>());
+
+        collideObject.parent = null;
+        tail = collideObject.gameObject;
+        speed += accelerate;
+        angle -= angleDrag;
+
+        friends.Add(collideObject.gameObject);
+    }
+
+    //ぶつかった時最後尾が分裂
+    private void Divide()
+    {
+        if (friends.Count == 0)
+            return;
+
+        GameObject divideObj = tail;
+
+        divideObj.tag = "Enemy";
+        divideObj.transform.position = divideObj.GetComponent<EnemyType>().GetStartPosition();
+        divideObj.GetComponentInChildren<SpriteRenderer>().color = divideObj.GetComponent<EnemyType>().GetEnemyColor();
+        divideObj.AddComponent<EnemyType>().GetEnemyBase();
+
+        divideObj.GetComponent<Rigidbody2D>().drag = 0;
+
+        friends.Remove(friends[friends.Count - 1]);
+        if (friends.Count != 0)
+            tail = friends[friends.Count - 1];
+        else
+            tail = gameObject;
+    }
+
+    //無敵時間の点滅
+    IEnumerator Blink()
+    {
         if (isBlinking)
             yield break;
 
-        isBlinking = false;
+        float blinkTime = 0.3f;
+        List<SpriteRenderer> renderer = new List<SpriteRenderer>();
+
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag(friendTag))
+        {
+            renderer.Add(obj.GetComponentInChildren<SpriteRenderer>());
+        }
+
+        isBlinking = true;
         while ((blinkTime-=Time.deltaTime) > 0)
         {
-            renderer.enabled = !renderer.enabled;
+            foreach(SpriteRenderer r in renderer)
+                r.enabled = !r.enabled;
             yield return new WaitForSeconds(0.1f);
         }
         isBlinking = false;
+        foreach (SpriteRenderer r in renderer)
+            r.enabled = true;
     }
 }
