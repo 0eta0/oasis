@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class test : MonoBehaviour {
+public class Map : MonoBehaviour {
 
     private Camera _mainCamera;
 
@@ -53,7 +53,7 @@ public class test : MonoBehaviour {
 //        Debug.Log(getScreenTopLeft().x + " , " + getScreenTopLeft().y);
 //        Debug.Log(getScreenBottomRight().x + " , " + getScreenBottomRight().y);
 
-        int bairitsu = 5;
+        int bairitsu = 3;
         object_range = getScreenBottomRight().x / bairitsu;  //障害物を生成させる範囲
         space = getScreenTopLeft().y / bairitsu; //壁に障害物を生成させないため
 
