@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rigid;
     private Vector2 moveDirection;
     private GameObject tail;
+    private bool isBlinking;
 
 	// Use this for initialization
 	void Start () {
@@ -34,11 +35,15 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (!CountDown.GetCanStart())
+            return;
         Rotate();
     }
 
     private void FixedUpdate()
     {
+        if (!CountDown.GetCanStart())
+            return;
         Move();
     }
 
@@ -94,5 +99,21 @@ public class PlayerController : MonoBehaviour {
         childPosition.y = tail.transform.position.y + offset.y * Mathf.Sin(arrayAngle);
 
         return childPosition;
+    }
+
+    private IEnumerable Blink()
+    {
+        float blinkTime = 1f;
+        Renderer renderer = playerSprite.GetComponent<Renderer>();
+        if (isBlinking)
+            yield break;
+
+        isBlinking = false;
+        while ((blinkTime-=Time.deltaTime) > 0)
+        {
+            renderer.enabled = !renderer.enabled;
+            yield return new WaitForSeconds(0.1f);
+        }
+        isBlinking = false;
     }
 }

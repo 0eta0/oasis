@@ -42,7 +42,7 @@ public class Map : MonoBehaviour {
         GameObject obj2 = (GameObject)Resources.Load("Wall_TB");
         GameObject obj3 = (GameObject)Resources.Load("Wall_S");
         GameObject obj4 = (GameObject)Resources.Load("Block");
-        GameObject obj5 = (GameObject)Resources.Load("NPC");
+        GameObject obj5 = (GameObject)Resources.Load("Player");
 
         //プレハブをもとにインスタンス生成
         Instantiate(obj2, new Vector3(0.0f, getScreenTopLeft().y, 0.0f), Quaternion.identity);
