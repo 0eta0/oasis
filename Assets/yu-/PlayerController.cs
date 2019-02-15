@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     private List<GameObject> friends = new List<GameObject>();
+    public int GetfriendsCount()
+    {
+        return friends.Count;
+    }
 
     private bool isBlinking;
 
@@ -42,14 +46,14 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (!CountDown.GetCanStart())
+        if (!CountDown.GetCanStart() || Timer.GetIsGameOver())
             return;
         Rotate();
     }
 
     private void FixedUpdate()
     {
-        if (!CountDown.GetCanStart())
+        if (!CountDown.GetCanStart() || Timer.GetIsGameOver())
             return;
         Move();
     }
@@ -73,7 +77,10 @@ public class PlayerController : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(/*!isBlinking && */collision.gameObject.tag == "Enemy")
+        if (!CountDown.GetCanStart() || Timer.GetIsGameOver())
+            return;
+
+        if (/*!isBlinking && */collision.gameObject.tag == "Enemy")
         {
             Join(collision.gameObject);
         }
@@ -128,7 +135,7 @@ public class PlayerController : MonoBehaviour {
     //ぶつかった時最後尾が分裂
     private void Divide()
     {
-        if (friends.Count == 0)
+        if (isBlinking ||  friends.Count == 0)
             return;
         
         GameObject divideObj = tail;
@@ -149,6 +156,9 @@ public class PlayerController : MonoBehaviour {
         //divideObj.GetComponent<Rigidbody2D>().drag = 0;
 
         //Instantiate(divideObj.GetComponent<EnemyType>().GetSelfPrefab(), spawnPos, Quaternion.identity);
+
+        speed -= accelerate;
+        angle += angleDrag;
 
         friends.Remove(friends[friends.Count - 1]);
         if (friends.Count != 0)

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Map : MonoBehaviour {
+public class map : MonoBehaviour {
     [SerializeField]
     private GameObject[] enemies;
     
     private Camera _mainCamera;
+    private int spawnNumMax;
+    private int oldTime;
 
     private Vector3 getScreenTopLeft()
     {
@@ -74,6 +76,7 @@ public class Map : MonoBehaviour {
                 else
                 {
                     Instantiate(enemies[Random.Range(0, enemies.Length)], new Vector3(position_x, position_y, 0.0f), Quaternion.identity);
+                    spawnNumMax++;
                     flag = 1;
                 }
             }
@@ -82,6 +85,43 @@ public class Map : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
-	}
+        SpawnEnemies();
+
+    }
+
+    private void SpawnEnemies()
+    {
+        if (oldTime == (int)Timer.GetCurrentTime())
+            return;
+
+        if ((int)Timer.GetCurrentTime() == 40 || (int)Timer.GetCurrentTime() == 20)
+        {
+            oldTime = (int)Timer.GetCurrentTime();
+            int spawnNumber = 0;
+            if (GameObject.FindGameObjectWithTag("Enemy") != null)
+                spawnNumber = GameObject.FindGameObjectsWithTag("Enemy").Length;
+
+            spawnNumber = spawnNumMax - spawnNumber;
+
+            float position_x;
+            float position_y;
+            double object_range;
+            double space;
+
+            int bairitsu = 3;
+            object_range = getScreenBottomRight().x / bairitsu;  //障害物を生成させる範囲
+            space = getScreenTopLeft().y / bairitsu; //壁に障害物を生成させないため
+
+            for (double i = getScreenTopLeft().x + space; i <= getScreenBottomRight().x - space; i += object_range)
+            {
+                for (double j = getScreenBottomRight().y + space; j <= getScreenTopLeft().y - space; j += object_range)
+                {
+                    position_x = Random.Range((float)i, (float)(i + object_range));
+                    position_y = Random.Range((float)j, (float)(j + object_range));
+
+                    Instantiate(enemies[Random.Range(0, enemies.Length)], new Vector3(position_x, position_y, 0.0f), Quaternion.identity);
+                }
+            }
+        }
+    }
 }
