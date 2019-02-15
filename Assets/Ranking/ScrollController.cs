@@ -26,6 +26,11 @@ public class ScrollController : MonoBehaviour {
 			text[1].text = (ranking[i*2]).ToString();
 			text[2].text = (ranking[i*2+1]).ToString();
 		}
+
+		var item = GameObject.Find("Score");
+		var text = item.GetComponentsInChildren<Text>();
+		text[0].text = TitleTranstion.GetName();
+		text[1].text = Score.GetScore().ToString();
 	}
 
 	void Start() {
