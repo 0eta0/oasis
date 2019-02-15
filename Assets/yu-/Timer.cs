@@ -52,7 +52,7 @@ public class Timer : MonoBehaviour {
             Score.SetScore(playerController.GetfriendsCount() + 1);
             gameOverObj.SetActive(true);
             sendRate rate = FindObjectOfType<sendRate>();
-            rate.sendScore(TitleTransition.GetName(), Score.GetScore(),"Standard");
+            rate.sendScore(TitleTransition.GetName(), Score.GetScore(),"standard");
         }
 
         timerText.text = minute.ToString("0") + ":" + ((int)currentTime).ToString("0");
