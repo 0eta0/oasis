@@ -39,7 +39,7 @@ public class ScrollController : MonoBehaviour {
 
 	void Update() {
 		if(Input.GetKeyDown("return")) {
-			// SceneManager.LoadScene("SampleScene");
+			SceneManager.LoadScene("title");
 		}
 	}
 }
