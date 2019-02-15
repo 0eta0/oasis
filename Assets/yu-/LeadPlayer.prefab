@@ -208,7 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2.7
   angle: 2.5
-  accelerate: 0.1
+  accelerate: 0.12
   angleDrag: 0.05
   friendTag: Friend
   offset: {x: 0.5, y: 0.5}

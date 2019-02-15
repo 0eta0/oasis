@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class ScrollController : MonoBehaviour {
@@ -27,10 +28,10 @@ public class ScrollController : MonoBehaviour {
 			text[2].text = (ranking[i*2+1]).ToString();
 		}
 
-		var item = GameObject.Find("Score");
-		var text = item.GetComponentsInChildren<Text>();
-		text[0].text = TitleTranstion.GetName();
-		text[1].text = Score.GetScore().ToString();
+		var item2 = GameObject.Find("Score");
+		var text2 = item2.GetComponentsInChildren<Text>();
+		text2[0].text = TitleTransition.GetName();
+		text2[1].text = Score.GetScore().ToString();
 	}
 
 	void Start() {
@@ -39,7 +40,7 @@ public class ScrollController : MonoBehaviour {
 
 	void Update() {
 		if(Input.GetKeyDown("return")) {
-			// SceneManager.LoadScene("SampleScene");
+			SceneManager.LoadScene("title");
 		}
 	}
 }

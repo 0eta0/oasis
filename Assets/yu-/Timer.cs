@@ -51,6 +51,8 @@ public class Timer : MonoBehaviour {
             isGameOver = true;
             Score.SetScore(playerController.GetfriendsCount() + 1);
             gameOverObj.SetActive(true);
+            sendRate rate = FindObjectOfType<sendRate>();
+            rate.sendScore(TitleTransition.GetName(), Score.GetScore(),"Standard");
         }
 
         timerText.text = minute.ToString("0") + ":" + ((int)currentTime).ToString("0");

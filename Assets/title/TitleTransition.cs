@@ -31,7 +31,7 @@ public class TitleTransition : MonoBehaviour {
 			if(inputValue != ""){
 				SetName(inputValue);
 				Debug.Log(GetName());
-				SceneManager.LoadScene ("SampleScene");
+				SceneManager.LoadScene ("MainGame");
 			}
 	}
 

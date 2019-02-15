@@ -115,6 +115,7 @@ public class PlayerController : MonoBehaviour {
         collideObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
 
         collideObject.GetComponent<Rigidbody2D>().drag = 10;
+        Destroy(collideObject.GetComponent<Collider2D>());
 
         HingeJoint2D joint = collideObject.gameObject.AddComponent<HingeJoint2D>();
         joint.connectedBody = transform.GetChild(transform.childCount - 1).GetComponent<Rigidbody2D>();
