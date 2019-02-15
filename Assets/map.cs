@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Map : MonoBehaviour {
+public class map : MonoBehaviour {
     [SerializeField]
     private GameObject[] enemies;
     
@@ -32,8 +32,10 @@ public class Map : MonoBehaviour {
     {
         float position_x;
         float position_y;
-        double object_range;
-        double space;
+        double object_range_x;
+        double object_range_y;
+        double space_x;
+        double space_y;
         int flag;
 
         GameObject obj1 = GameObject.Find("Main Camera");
@@ -56,16 +58,18 @@ public class Map : MonoBehaviour {
 //        Debug.Log(getScreenBottomRight().x + " , " + getScreenBottomRight().y);
 
         int bairitsu = 3;
-        object_range = getScreenBottomRight().x / bairitsu;  //障害物を生成させる範囲
-        space = getScreenTopLeft().y / bairitsu; //壁に障害物を生成させないため
+        object_range_x = getScreenBottomRight().x / bairitsu;  //障害物を生成させる範囲
+        object_range_y = getScreenTopLeft().y / bairitsu;
+        space_x = getScreenBottomRight().x / bairitsu;
+        space_y = getScreenTopLeft().y / bairitsu; //壁に障害物を生成させないため
 
         flag = 1;
-        for (double i = getScreenTopLeft().x + space; i <= getScreenBottomRight().x - space; i += object_range)
+        for (double i = getScreenTopLeft().x + space_x; i <= getScreenBottomRight().x - space_x; i += object_range_x)
         {
-            for (double j = getScreenBottomRight().y + space; j <= getScreenTopLeft().y - space; j += object_range)
+            for (double j = getScreenBottomRight().y + space_y; j <= getScreenTopLeft().y - space_y; j += object_range_y)
             {
-                position_x = Random.Range((float)i, (float)(i + object_range));
-                position_y = Random.Range((float)j, (float)(j + object_range));
+                position_x = Random.Range((float)i, (float)(i + object_range_x));
+                position_y = Random.Range((float)j, (float)(j + object_range_y));
                 if (flag == 1)
                 {
                     Instantiate(obj4, new Vector3(position_x, position_y, 0.0f), Quaternion.identity);
