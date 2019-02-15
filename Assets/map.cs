@@ -5,7 +5,7 @@ using UnityEngine;
 public class map : MonoBehaviour {
     [SerializeField]
     private GameObject[] enemies;
-    
+
     private Camera _mainCamera;
     private int spawnNumMax;
     private int oldTime;
@@ -85,6 +85,7 @@ public class map : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+<<<<<<< HEAD
         SpawnEnemies();
 
     }
@@ -124,4 +125,8 @@ public class map : MonoBehaviour {
             }
         }
     }
+=======
+
+	}
+>>>>>>> 26bd14bc3180808ba7012b7e0d2780eae9360746
 }
