@@ -713,7 +713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1502000984}
-  totalTime: 10
+  totalTime: 60
   gameOverObj: {fileID: 723776920}
 --- !u!114 &1502000987
 MonoBehaviour:
@@ -843,9 +843,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
+  - {fileID: 1467551688467396, guid: a02231ff654110c4eb5b156207e127fd, type: 2}
   - {fileID: 1482245023362908, guid: 1ab5229ab84c07548965625bd154de52, type: 2}
-  - {fileID: 1482245023362908, guid: 1ab5229ab84c07548965625bd154de52, type: 2}
-  - {fileID: 1482245023362908, guid: 1ab5229ab84c07548965625bd154de52, type: 2}
+  - {fileID: 1357522964728948, guid: ea790d1e40e46d546bf5f812065578cc, type: 2}
 --- !u!4 &1855806416
 Transform:
   m_ObjectHideFlags: 0
