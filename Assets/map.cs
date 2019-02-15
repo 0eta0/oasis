@@ -32,8 +32,10 @@ public class map : MonoBehaviour {
     {
         float position_x;
         float position_y;
+        //障害物を生成させる範囲の変数
         double object_range_x;
         double object_range_y;
+        //壁に障害物を生成させないための変数
         double space_x;
         double space_y;
         int flag;
@@ -57,11 +59,11 @@ public class map : MonoBehaviour {
 //        Debug.Log(getScreenTopLeft().x + " , " + getScreenTopLeft().y);
 //        Debug.Log(getScreenBottomRight().x + " , " + getScreenBottomRight().y);
 
-        int bairitsu = 3;
-        object_range_x = getScreenBottomRight().x / bairitsu;  //障害物を生成させる範囲
+        int bairitsu = 3;  //障害物、敵の生成範囲を調整するパラメータ
+        object_range_x = getScreenBottomRight().x / bairitsu;
         object_range_y = getScreenTopLeft().y / bairitsu;
         space_x = getScreenBottomRight().x / bairitsu;
-        space_y = getScreenTopLeft().y / bairitsu; //壁に障害物を生成させないため
+        space_y = getScreenTopLeft().y / bairitsu;
 
         flag = 1;
         for (double i = getScreenTopLeft().x + space_x; i <= getScreenBottomRight().x - space_x; i += object_range_x)
