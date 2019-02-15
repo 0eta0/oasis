@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+
 public class sendRate : MonoBehaviour
 {
   public void sendScore(string name, int rate, string type) {
@@ -10,7 +11,8 @@ public class sendRate : MonoBehaviour
     //var unixTime = ToUnixTime(dt);
     var baseDt = new DateTimeOffset(1970, 1, 1, 0, 0,0, TimeSpan.Zero);
     var unixtime = (DateTimeOffset.Now - baseDt).Ticks / 10000000;
-    StartCoroutine(PostRequest("http://127.0.0.1:8000/data/insert", "{\"rate\":" + rate.ToString() + ", \"name\":" + name + ", \"type\":\"" + type + "\", \"date\":" + unixtime.ToString() + "}"));
+    Debug.Log("{\"rate\":" + rate.ToString() + ", \"name\":" + name + ", \"type\":\"" + type + "\", \"date\":" + unixtime.ToString() + "}");
+    StartCoroutine(PostRequest("http://127.0.0.1:8000/data/insert", "{\"rate\":" + rate.ToString() + ", \"name\":\"" + name + "\", \"type\":\"" + type + "\", \"date\":" + unixtime.ToString() + "}"));
   }
   //private static long getNowUnixTime()
   //{
@@ -32,12 +34,12 @@ public class sendRate : MonoBehaviour
         yield return www.SendWebRequest();
         if (!www.isNetworkError)
         {
-                string resultContent = www.downloadHandler.text;
-                Debug.Log("Succesful posting " + resultContent);
+          string resultContent = www.downloadHandler.text;
+          Debug.Log("Succesful posting " + resultContent);
         }
         else
         {
-                Debug.Log("POST request unsuccesful");
+          Debug.Log("POST request unsuccesful");
         }
     }
 }
