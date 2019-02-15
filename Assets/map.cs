@@ -34,8 +34,12 @@ public class map : MonoBehaviour {
     {
         float position_x;
         float position_y;
-        double object_range;
-        double space;
+        //障害物を生成させる範囲の変数
+        double object_range_x;
+        double object_range_y;
+        //壁に障害物を生成させないための変数
+        double space_x;
+        double space_y;
         int flag;
 
         GameObject obj1 = GameObject.Find("Main Camera");
@@ -57,17 +61,19 @@ public class map : MonoBehaviour {
 //        Debug.Log(getScreenTopLeft().x + " , " + getScreenTopLeft().y);
 //        Debug.Log(getScreenBottomRight().x + " , " + getScreenBottomRight().y);
 
-        int bairitsu = 3;
-        object_range = getScreenBottomRight().x / bairitsu;  //障害物を生成させる範囲
-        space = getScreenTopLeft().y / bairitsu; //壁に障害物を生成させないため
+        int bairitsu = 3;  //障害物、敵の生成範囲を調整するパラメータ
+        object_range_x = getScreenBottomRight().x / bairitsu;
+        object_range_y = getScreenTopLeft().y / bairitsu;
+        space_x = getScreenBottomRight().x / bairitsu;
+        space_y = getScreenTopLeft().y / bairitsu;
 
         flag = 1;
-        for (double i = getScreenTopLeft().x + space; i <= getScreenBottomRight().x - space; i += object_range)
+        for (double i = getScreenTopLeft().x + space_x; i <= getScreenBottomRight().x - space_x; i += object_range_x)
         {
-            for (double j = getScreenBottomRight().y + space; j <= getScreenTopLeft().y - space; j += object_range)
+            for (double j = getScreenBottomRight().y + space_y; j <= getScreenTopLeft().y - space_y; j += object_range_y)
             {
-                position_x = Random.Range((float)i, (float)(i + object_range));
-                position_y = Random.Range((float)j, (float)(j + object_range));
+                position_x = Random.Range((float)i, (float)(i + object_range_x));
+                position_y = Random.Range((float)j, (float)(j + object_range_y));
                 if (flag == 1)
                 {
                     Instantiate(obj4, new Vector3(position_x, position_y, 0.0f), Quaternion.identity);
