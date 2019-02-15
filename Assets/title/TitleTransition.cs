@@ -8,6 +8,17 @@ public class TitleTransition : MonoBehaviour {
 	public InputField inputField;
   public Text text;
 	// Use this for initialization
+
+	private static string name;
+	   public static string GetName()
+	   {
+	       return name;
+	   }
+	   public static void SetName(string InName)
+	   {
+	       name = InName;
+	   }
+
 	void Start () {
 		inputField = GameObject.Find ("InputField").GetComponent<InputField> ();
 
@@ -15,10 +26,13 @@ public class TitleTransition : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown("return")) {
 		string inputValue = inputField.text;
-		Debug.Log(inputValue);
-		SceneManager.LoadScene ("SampleScene");
+		if(Input.GetKeyDown("return")) {
+			if(inputValue != ""){
+				SetName(inputValue);
+				Debug.Log(GetName());
+				SceneManager.LoadScene ("SampleScene");
+			}
 	}
 
 
