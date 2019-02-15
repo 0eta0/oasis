@@ -21,8 +21,7 @@ public class TitleTransition : MonoBehaviour {
 
 	void Start () {
 		inputField = GameObject.Find ("InputField").GetComponent<InputField> ();
-
-	}
+    }
 
 	// Update is called once per frame
 	void Update () {
@@ -31,11 +30,9 @@ public class TitleTransition : MonoBehaviour {
 			if(inputValue != ""){
 				SetName(inputValue);
 				Debug.Log(GetName());
+                SoundManager.Instance.PlaySe(SE.Start);
 				SceneManager.LoadScene ("MainGame");
 			}
 	}
-
-
-
 	}
 }

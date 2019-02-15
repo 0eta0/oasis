@@ -13,7 +13,7 @@ public class ScrollController : MonoBehaviour {
 	private IEnumerator UpdateRanking() {
 		List<string> ranking = new List<string>();
 
-		yield return StartCoroutine(WebRequest.PostRequest("http://127.0.0.1:8000/data/get", "{\"type\":\"hard\"}", (result) =>
+		yield return StartCoroutine(WebRequest.PostRequest("http://127.0.0.1:8000/data/get", "{\"type\":\"standard\"}", (result) =>
 			ranking = result
 		));
 
@@ -30,8 +30,8 @@ public class ScrollController : MonoBehaviour {
 
 		var item2 = GameObject.Find("Score");
 		var text2 = item2.GetComponentsInChildren<Text>();
-		text2[0].text = TitleTransition.GetName();
-		text2[1].text = Score.GetScore().ToString();
+		text2[1].text = TitleTransition.GetName();
+		text2[2].text = Score.GetScore().ToString();
 	}
 
 	void Start() {

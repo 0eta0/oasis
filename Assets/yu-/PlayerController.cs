@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour {
 
         if(collision.gameObject.tag == "BlockObject")
         {
+            SoundManager.Instance.PlaySe(SE.HitWall);
             Divide();
             StartCoroutine("Blink");
         }
@@ -107,6 +108,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Join(GameObject collision)
     {
+        SoundManager.Instance.PlaySe(SE.GetEnemy);
         Transform collideObject = collision.transform;
 
         collideObject.parent = transform;

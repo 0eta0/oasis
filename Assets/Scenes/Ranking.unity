@@ -501,8 +501,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 284.15, y: -192.1}
-  m_SizeDelta: {x: 568.3, y: 264.2}
+  m_AnchoredPosition: {x: 284.15, y: -179.36}
+  m_SizeDelta: {x: 568.3, y: 258.28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &368849519
 MonoBehaviour:
@@ -1063,7 +1063,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Enter\u3067\u30BF\u30A4\u30C8\u30EB\u3078\u623B\u308B"
+  m_Text: Press Enter To Title
 --- !u!222 &1617591902
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1104,7 +1104,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000038146973, y: 132.1}
+  m_AnchoredPosition: {x: 0.0000038146973, y: 129.14}
   m_SizeDelta: {x: 598, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1745284358
