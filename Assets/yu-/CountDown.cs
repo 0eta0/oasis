@@ -19,6 +19,7 @@ public class CountDown : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        canStart = false;
         currentTime = totalTime;
         timerText.text = currentTime.ToString();
         StartCoroutine("StartCountDown");

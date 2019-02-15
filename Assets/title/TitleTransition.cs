@@ -21,6 +21,7 @@ public class TitleTransition : MonoBehaviour {
 
 	void Start () {
 		inputField = GameObject.Find ("InputField").GetComponent<InputField> ();
+        SoundManager.Instance.PlayBgm(BGM.Title);
     }
 
 	// Update is called once per frame

@@ -7,10 +7,6 @@ public enum BGM
     None=-1,
     Title,
     Game,
-    Game2,
-    Game3,
-    Game4,
-    Game5,
 }
 
 public enum SE
@@ -20,6 +16,8 @@ public enum SE
     Start,
     GetEnemy,
     TimeUp,
+    Result,
+
 }
 
 [System.Serializable]
@@ -44,19 +42,16 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager> {
 
     private Dictionary<BGM, string> bgmName = new Dictionary<BGM, string>()
     {
-        {BGM.Title,"Monolithic Feelings" },
-        {BGM.Game,"Berlin Hours330" },
-        {BGM.Game2,"Tenuous Streams" },
-        {BGM.Game3,"Anxious Poetry11" },
-        {BGM.Game4,"Anxious Poetry11" },
-        {BGM.Game5,"Anxious Poetry11" },
+        {BGM.Title,"harunopayapaya" },
+        {BGM.Game,"wintercarnival" },
     };
     private Dictionary<SE, string> seName = new Dictionary<SE, string>()
     {
         {SE.HitWall,"powerdown03" },
-        {SE.Start,"decision17" },
+        {SE.Start,"info-girl1_info-girl1-youkoso1" },
         {SE.GetEnemy,"powerup04" },
         {SE.TimeUp,"info-girl1_info-girl1-syuuryoushimashita1" },
+        {SE.Result, "info-girl1_info-girl1-mataasondene1" },
     };
 
     private AudioClip[] seClips;

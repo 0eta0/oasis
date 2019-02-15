@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        SoundManager.Instance.PlayBgm(BGM.Game);
         rigid = GetComponent<Rigidbody2D>();
         tail = this.gameObject;
     }

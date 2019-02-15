@@ -37,6 +37,8 @@ public class Timer : MonoBehaviour {
 
         currentTime = totalTime;
         timerText.text = "1:00";
+        isGameOver = false;
+
     }
 
     void Update()
@@ -46,8 +48,9 @@ public class Timer : MonoBehaviour {
 
         currentTime -= Time.deltaTime;
 
-        if (currentTime <= 0)
+        if (!isGameOver && currentTime <= 0)
         {
+            SoundManager.Instance.PlaySe(SE.TimeUp);
             isGameOver = true;
             Score.SetScore(playerController.GetfriendsCount() + 1);
             gameOverObj.SetActive(true);

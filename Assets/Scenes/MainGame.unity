@@ -424,7 +424,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GameOver
+  m_Text: Time up!
 --- !u!222 &723776924
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -718,7 +718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1502000984}
-  totalTime: 10
+  totalTime: 60
   gameOverObj: {fileID: 723776920}
 --- !u!114 &1502000987
 MonoBehaviour:

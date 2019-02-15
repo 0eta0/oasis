@@ -41,6 +41,7 @@ public class ScrollController : MonoBehaviour {
 	void Update() {
 		if(Input.GetKeyDown("return")) {
 			SceneManager.LoadScene("title");
-		}
+            SoundManager.Instance.PlaySe(SE.Result);
+        }
 	}
 }
