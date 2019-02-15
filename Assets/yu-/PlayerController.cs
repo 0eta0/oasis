@@ -130,21 +130,33 @@ public class PlayerController : MonoBehaviour {
     {
         if (friends.Count == 0)
             return;
-
+        
         GameObject divideObj = tail;
 
         divideObj.tag = "Enemy";
-        divideObj.transform.position = divideObj.GetComponent<EnemyType>().GetStartPosition();
-        divideObj.GetComponentInChildren<SpriteRenderer>().color = divideObj.GetComponent<EnemyType>().GetEnemyColor();
-        divideObj.AddComponent<EnemyType>().GetEnemyBase();
 
-        divideObj.GetComponent<Rigidbody2D>().drag = 0;
+        Vector3 spawnPos = divideObj.GetComponent<EnemyType>().GetStartPosition();
+        //divideObj.transform.position = divideObj.GetComponent<EnemyType>().GetStartPosition();
+
+        Destroy(divideObj.GetComponent<HingeJoint2D>());
+        Destroy(divideObj.GetComponent<DistanceJoint2D>());
+
+        //divideObj.GetComponentInChildren<SpriteRenderer>().color = divideObj.GetComponent<EnemyType>().GetEnemyColor();
+        //Debug.Log(divideObj.GetComponent<EnemyType>().GetEnemyColor());
+
+        //divideObj.AddComponent<EnemyType>().GetEnemyBase();
+
+        //divideObj.GetComponent<Rigidbody2D>().drag = 0;
+
+        //Instantiate(divideObj.GetComponent<EnemyType>().GetSelfPrefab(), spawnPos, Quaternion.identity);
 
         friends.Remove(friends[friends.Count - 1]);
         if (friends.Count != 0)
             tail = friends[friends.Count - 1];
         else
             tail = gameObject;
+
+        Destroy(divideObj);
     }
 
     //無敵時間の点滅
@@ -164,12 +176,18 @@ public class PlayerController : MonoBehaviour {
         isBlinking = true;
         while ((blinkTime-=Time.deltaTime) > 0)
         {
-            foreach(SpriteRenderer r in renderer)
-                r.enabled = !r.enabled;
+            foreach (SpriteRenderer r in renderer)
+            {
+                if(r!=null)
+                    r.enabled = !r.enabled;
+            }
             yield return new WaitForSeconds(0.1f);
         }
         isBlinking = false;
         foreach (SpriteRenderer r in renderer)
-            r.enabled = true;
+        {
+            if (r != null)
+                r.enabled = true;
+        }
     }
 }

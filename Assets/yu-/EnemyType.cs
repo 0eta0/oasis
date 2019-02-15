@@ -5,6 +5,14 @@ using UnityEngine;
 public class EnemyType : MonoBehaviour
 {
     [SerializeField]
+    private GameObject selfPrefab;
+    public GameObject GetSelfPrefab()
+    {
+        return selfPrefab;
+    }
+
+
+    [SerializeField]
     private Color enemyColor;
     public Color GetEnemyColor()
     { return enemyColor; }

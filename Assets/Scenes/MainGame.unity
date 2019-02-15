@@ -357,7 +357,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 39, y: -0.000030517578}
+  m_AnchoredPosition: {x: -5.5, y: -0.000030517578}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1040237423
@@ -392,7 +392,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Time:'
+  m_Text: "\u6B8B\u308A\u6642\u9593:"
 --- !u!222 &1040237424
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -622,9 +622,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 1467551688467396, guid: a02231ff654110c4eb5b156207e127fd, type: 2}
   - {fileID: 1482245023362908, guid: 1ab5229ab84c07548965625bd154de52, type: 2}
-  - {fileID: 1357522964728948, guid: ea790d1e40e46d546bf5f812065578cc, type: 2}
+  - {fileID: 1482245023362908, guid: 1ab5229ab84c07548965625bd154de52, type: 2}
+  - {fileID: 1482245023362908, guid: 1ab5229ab84c07548965625bd154de52, type: 2}
 --- !u!4 &1855806416
 Transform:
   m_ObjectHideFlags: 0

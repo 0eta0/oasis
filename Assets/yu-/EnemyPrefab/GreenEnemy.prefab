@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98452b94ff201449970c3e42aa892dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selfPrefab: {fileID: 1482245023362908}
   enemyColor: {r: 0.37254903, g: 0.85098046, b: 0.54901963, a: 1}
 --- !u!212 &212929212834378250
 SpriteRenderer:

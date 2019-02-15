@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98452b94ff201449970c3e42aa892dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selfPrefab: {fileID: 1357522964728948}
   enemyColor: {r: 0.69803923, g: 0.31764707, b: 0.7058824, a: 1}
 --- !u!114 &114928537233328618
 MonoBehaviour:
