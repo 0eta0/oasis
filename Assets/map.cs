@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Map : MonoBehaviour {
+public class map : MonoBehaviour {
     [SerializeField]
     private GameObject[] enemies;
-    
+
     private Camera _mainCamera;
 
     private Vector3 getScreenTopLeft()
@@ -82,6 +82,6 @@ public class Map : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
+
 	}
 }
