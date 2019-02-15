@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class green_enemy : EnemyBase {
+public class wall_bounce : MonoBehaviour {
+/* EnemyMoveScript */
 
 	// 敵オブジェクトのRigidbody2Dを入れる変数
 	private Rigidbody2D rb2d;
 
 	// ENEMYのx座標の変更値
-	private float x = 0;
+	private float x = 0.1f;
 	// ENEMYのy座標の変更値
-	private float y = 0.1f;
+	private float y = 0;
 	// +か-か
 	private float Sign = 1;
 
@@ -30,17 +32,17 @@ public class green_enemy : EnemyBase {
 	// ENEMYの移動関数1フレーム毎にUpdate関数から呼び出される
 	void EnemyMove () {
 		// ENEMYのx座標
-		float rb2d_velocity_y = rb2d.velocity.y;
-		if (System.Math.Abs(rb2d_velocity_y) > 2) {
+		float rb2d_velocity_x = rb2d.velocity.x;
+		if (System.Math.Abs(rb2d_velocity_x) > 4) {
 			Sign = Sign * -1;
 		}
 		// 移動を計算させるための２次元のベクトルを作る
-		Vector2 direction = new Vector2 (x, rb2d_velocity_y - Sign*y);
-			// ENEMYのRigidbody2Dに移動速度を指定する
+		Vector2 direction = new Vector2 (rb2d_velocity_x - Sign*x, y);
+		// ENEMYのRigidbody2Dに移動速度を指定する
 		rb2d.velocity = direction;
 	}
 
-	void OnTriggerEnter2D(Collider2D wall){
+	/*void OnTriggerEnter2D(Collider wall){
 		float rb2d_velocity_x = rb2d.velocity.x;
 		float rb2d_velocity_y = rb2d.velocity.y;
 		// 移動を計算させるための２次元のベクトルを作る
@@ -48,5 +50,6 @@ public class green_enemy : EnemyBase {
 		Sign = Sign * -1;
 		// ENEMYのRigidbody2Dに移動速度を指定する
 		rb2d.velocity = direction;
-	}
+	}*/
 }
+

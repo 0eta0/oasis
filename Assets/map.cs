@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Map : MonoBehaviour {
+public class map : MonoBehaviour {
     [SerializeField]
     private GameObject[] enemies;
     

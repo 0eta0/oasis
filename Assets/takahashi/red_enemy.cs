@@ -42,4 +42,14 @@ public class red_enemy : MonoBehaviour {
 			// ENEMYのRigidbody2Dに移動速度を指定する
 		rb2d.velocity = direction;
 	}
+
+	void OnTriggerEnter2D(Collider2D wall){
+		float rb2d_velocity_x = rb2d.velocity.x;
+		float rb2d_velocity_y = rb2d.velocity.y;
+		// 移動を計算させるための２次元のベクトルを作る
+		Vector2 direction = new Vector2 (-1*rb2d_velocity_x, -1*rb2d_velocity_y);
+		Sign = Sign * -1;
+		// ENEMYのRigidbody2Dに移動速度を指定する
+		rb2d.velocity = direction;
+	}
 }

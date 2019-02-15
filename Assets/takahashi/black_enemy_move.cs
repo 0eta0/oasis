@@ -22,7 +22,6 @@ public class black_enemy_move : MonoBehaviour {
 	private IEnumerator Flash() {
 		while ( true ) {
 			time += Time.deltaTime;
-			Debug.Log(time);
 			if(time < 0.2){
 				yield return new WaitForSeconds(hide_interval);
 				yield return new WaitForSeconds(appear_interval);
